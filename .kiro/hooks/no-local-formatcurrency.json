@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Block local formatCurrency definitions",
+      "trigger": "PostFileSave",
+      "description": "Prevents regression of the formatCurrency duplication bug by blocking saves that introduce local formatCurrency definitions. Points to the centralized utility.",
+      "matcher": "\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "powershell -NoProfile -Command \"$f = $args[0]; if ($f -and $f -ne 'lib\\\\utils\\\\textFormat.ts' -and $f -notmatch 'lib[/\\\\\\\\]utils[/\\\\\\\\]textFormat\\\\.ts') { $content = Get-Content $f -Raw -ErrorAction SilentlyContinue; if ($content -match '(?m)^\\\\s*(const|function|let|var)\\\\s+formatCurrency|formatCurrency\\\\s*=\\\\s*\\\\(') { Write-Error \\\"BLOCKED: Local formatCurrency definition detected in $f. Use: import { formatCurrency } from '@/lib/utils/textFormat' instead.\\\"; exit 2 } }; exit 0\" -- \"${filePath}\""
+      }
+    }
+  ]
+}

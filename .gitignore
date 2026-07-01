@@ -1,0 +1,18 @@
+# Secrets
+.env
+.env.local
+.env.production
+.kiro/settings/mcp.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Node (if any tooling is added later)
+node_modules/

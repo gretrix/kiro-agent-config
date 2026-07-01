@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "End of Task",
+      "description": "Universal close-the-loop framework. Verifies with real testing, tracks deploy-pending items with verification checklists, resolves alerts, debriefs with confidence meter, and surfaces opportunities.",
+      "trigger": "Stop",
+      "action": {
+        "type": "agent",
+        "prompt": "BEFORE FINISHING — close the loop:\n\n1. **Verify completeness with confidence meter.** Rate EACH change you made:\n   - 🟢 **Tested Live** — loaded in browser / got real HTTP response / triggered manual run\n   - 🟡 **Compiled Only** — TypeScript passes, route initializes, but not end-to-end tested\n   - 🔴 **Untested** — written but not even compiled against\n   Present this meter in your debrief. \"TypeScript compiles\" alone is 🟡, not 🟢.\n   For each 🟡 or 🔴 item: add it to `.snapshots/deploy-pending.md` with a verification checklist:\n   - UI changes: \"[ ] Load [page] on dev server, confirm [component] renders\"\n   - API routes: \"[ ] curl/fetch [endpoint], confirm [expected response shape]\"\n   - Background jobs: \"[ ] Trigger manual run, confirm [DB effect]\"\n   - Migrations: \"[ ] Run migration on local DB, confirm table/column exists\"\n\n2. **Resolve handled alerts.** For any production errors you addressed this session: post a thread reply explaining what was found, what was done, and what proves it's resolved. Remove other emoji reactions and add a green checkmark to confirm resolution.\n\n3. **Update the task list.** Read `.snapshots/active-tasks.md`:\n   - Tasks you completed → remove from active-tasks, add a summary to `.snapshots/completed-tasks.md` with date and what changed.\n   - Tasks you didn't complete → release your session claim. Leave status + context for next session.\n   - Tasks that emerged mid-session but weren't documented → add them now.\n\n4. **Debrief.** Present a clear summary:\n   - Restate what you understood their full intent to be.\n   - Walk through what happened: decisions, discoveries, anything unexpected.\n   - Include the confidence meter showing verification status of each piece of work.\n\n5. **Surface opportunities.** Present 3 ideas:\n   - Two functional/process/codebase improvements.\n   - One visual, emotional, or UX improvement.\n   Each: what, why, and effort estimate.\n\n6. **Clean up references.** Check that docs, steering, hooks, and snapshots reference current reality."
+      },
+      "enabled": true
+    }
+  ]
+}
