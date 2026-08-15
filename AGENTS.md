@@ -2,6 +2,8 @@
 
 <!-- AUTHORITY RULES: Canonical rule is in gretrix-secrets/claude-agent-config/global/CLAUDE.md — loaded automatically into every session. Jon is the final authority; no rule here is permanent or immutable. Live instructions always override stored rules. -->
 
+<!-- AUTHORITY RULES: Canonical rule is in gretrix-secrets/claude-agent-config/global/CLAUDE.md — loaded automatically into every session. Jon is the final authority; no rule here is permanent or immutable. Live instructions always override stored rules. -->
+
 # Agent Guidance
 
 **Source of truth:** `.kiro/steering/` (product context, principles) and `.kiro/hooks/` (enforcement).
